@@ -1,0 +1,57 @@
+<section class="todos-list-wrapper" [ngClass.gt-sm]="'list-desktop-view'" fxLayout="column" fxLayoutGap="20px">
+  <!-- region to-do input field and button -->
+  <div class="todo-input-wrapper" fxLayout="row" fxLayoutGap="20px">
+    <!-- input for to-do details   -->
+    <mat-form-field class="todo-input" appearance="outline" fxFlex="80">
+      <input matInput
+             placeholder="Add Details"
+             (keyup.enter)="addTodo($event)" #todoInput>
+    </mat-form-field>
+    <!--    add to-do button-->
+    <button mat-raised-button
+            color="primary"
+            fxFlex="20"
+            (click)="addTodo({target:todoInput})">Add
+    </button>
+  </div>
+  <!--  endregion -->
+
+  <!--  region to-do lists tabs -->
+  <mat-tab-group mat-align-tabs="center">
+    <!--    All to-do items list -->
+    <mat-tab label="All">
+      <ng-container *ngFor="let todo of todos$|async">
+        <ng-container *ngTemplateOutlet="todoWrapper;context:{todo:todo}"></ng-container>
+      </ng-container>
+    </mat-tab>
+    <!--    Active to-do items -->
+    <mat-tab label="Active">
+      <ng-container *ngFor="let todo of activeTodos$|async">
+        <ng-container *ngTemplateOutlet="todoWrapper;context:{todo:todo}"></ng-container>
+      </ng-container>
+    </mat-tab>
+    <!--    Completed to-do items -->
+    <mat-tab label="Completed">
+      <ng-container *ngFor="let todo of completedTodos$|async">
+        <ng-container *ngTemplateOutlet="todoWrapper;context:{todo:todo}"></ng-container>
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+  <!--  endregion -->
+</section>
+
+<!-- region to-do item -->
+<ng-template let-todo='todo' #todoWrapper>
+  <mat-card class="todo-wrapper">
+    <!-- to-do checkbox -->
+    <mat-checkbox fxFlex="90" [class.completed]="todo.completed"
+                  [ngClass.gt-sm]="'todo-item-desktop-view'"
+                  class="todo-item" (change)="updateTodo($event,todo)"
+                  [checked]="todo.completed">{{todo.content}}</mat-checkbox>
+    <!-- to-do remove button -->
+    <mat-icon class="delete-todo" fxFlex="10" fxLayoutAlign="end" color="accent" aria-label="Remove todo button"
+              (click)="deleteTodo(todo.id)">delete
+    </mat-icon>
+  </mat-card>
+</ng-template>
+<!-- endregion -->

@@ -1,0 +1,32 @@
+@import "src/styles";
+
+.container {
+  &.desktop-view {
+    margin: 0 5rem;
+  }
+
+  .main-header {
+    height: 15vh;
+
+    .logo {
+      font-family: $font-poppins;
+      font-size: 32px;
+      font-weight: 600;
+    }
+  }
+
+  .main-content {
+    height: 80vh;
+  }
+
+  .main-footer {
+    height: 5vh;
+    color: $footer-color;
+    font-family: $font-montserrat;
+    font-weight: 500;
+
+    .footer-username {
+      font-weight: 700;
+    }
+  }
+}

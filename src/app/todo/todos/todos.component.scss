@@ -1,0 +1,53 @@
+@import "src/styles";
+
+.todos-list-wrapper {
+  width: 90vw;
+
+  &.list-desktop-view {
+    width: 60vw;
+  }
+
+  .todo-input-wrapper {
+
+    .todo-input {
+      ::ng-deep {
+        .mat-form-field-wrapper {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .todo-wrapper {
+    margin-top: 2px;
+    box-shadow: unset;
+    border-bottom: 2px solid $shadow;
+
+    .delete-todo {
+      cursor: pointer !important;
+    }
+
+    ::ng-deep {
+      .todo-item {
+        &.completed .mat-checkbox-layout .mat-checkbox-label {
+          text-decoration: line-through;
+        }
+
+        &.todo-item-desktop-view {
+          .mat-checkbox-layout .mat-checkbox-label {
+            max-width: 45vw;
+          }
+        }
+
+        .mat-checkbox-layout .mat-checkbox-label {
+          line-height: 24px;
+          text-overflow: ellipsis;
+          max-width: 60vw;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

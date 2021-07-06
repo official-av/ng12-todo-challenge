@@ -1,0 +1,17 @@
+<div class="container" [ngClass.gt-sm]="'desktop-view'">
+  <!-- header -->
+  <header class="main-header" fxLayoutAlign="center center">
+    <span class="logo">#todo</span>
+  </header>
+  <!-- content -->
+  <section class="main-content" fxLayoutAlign="center start">
+    <router-outlet></router-outlet>
+  </section>
+  <!-- footer -->
+  <footer class="main-footer" fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span>created by</span>
+    <span class="footer-username">anmol vashistha</span>
+    <span>- devChallenges.io</span>
+  </footer>
+</div>
+
